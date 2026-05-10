@@ -8,8 +8,6 @@
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body { font-family: 'Inter', sans-serif; background: #0d0d0d; color: #e0e0e0; min-height: 100vh; line-height: 1.6; }
-
-        /* Header */
         header { background: #141414; border-bottom: 1px solid #2a2a2a; padding: 15px 0; position: sticky; top: 0; z-index: 100; }
         .header-content { max-width: 1200px; margin: 0 auto; padding: 0 20px; display: flex; align-items: center; justify-content: space-between; }
         .logo-area { display: flex; align-items: center; gap: 12px; }
@@ -18,7 +16,6 @@
         .logo-icon img { width: 100%; height: 100%; object-fit: cover; }
         .logo-text h1 { font-size: 1.2rem; font-weight: 700; color: #fff; letter-spacing: -0.5px; }
         .logo-text span { font-size: 0.7rem; color: #888; font-weight: 400; }
-
         .nav-links { display: flex; gap: 10px; align-items: center; }
         .nav-btn { background: transparent; border: 1px solid #333; color: #aaa; padding: 8px 16px; border-radius: 8px; cursor: pointer; font-size: 0.85rem; font-weight: 500; transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); font-family: inherit; text-decoration: none; display: inline-flex; align-items: center; gap: 6px; position: relative; overflow: hidden; }
         .nav-btn:hover { border-color: #7c3aed; color: #7c3aed; transform: translateY(-2px); box-shadow: 0 4px 15px rgba(124, 58, 237, 0.2); }
@@ -32,113 +29,31 @@
         .nav-btn.primary:hover { background: #6d28d9; transform: translateY(-2px); box-shadow: 0 4px 15px rgba(124, 58, 237, 0.3); }
         .nav-btn.danger { background: #dc2626; border-color: #dc2626; color: white; }
         .nav-btn.danger:hover { background: #b91c1c; transform: translateY(-2px); box-shadow: 0 4px 15px rgba(220, 38, 38, 0.3); }
-
-        /* Main */
         main { max-width: 1200px; margin: 0 auto; padding: 30px 20px; }
         .banner { width: 100%; height: 320px; background: #1a1a1a; border-radius: 16px; overflow: hidden; margin-bottom: 30px; border: 1px solid #2a2a2a; position: relative; transition: transform 0.4s ease, box-shadow 0.4s ease; }
         .banner:hover { transform: translateY(-3px); box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4); }
         .banner img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.6s ease; }
         .banner:hover img { transform: scale(1.03); }
-
-        /* Admin Bar - aparece quando logado */
-        .admin-bar {
-            display: none;
-            max-width: 1200px;
-            margin: 0 auto 20px;
-            padding: 0 20px;
-            animation: slideDown 0.4s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
-        }
-
-        .admin-bar.active {
-            display: block;
-        }
-
-        @keyframes slideDown {
-            from { opacity: 0; transform: translateY(-20px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        .admin-bar-inner {
-            background: linear-gradient(135deg, rgba(124, 58, 237, 0.15), rgba(220, 38, 38, 0.1));
-            border: 1px solid rgba(124, 58, 237, 0.3);
-            border-radius: 14px;
-            padding: 14px 20px;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            gap: 12px;
-            flex-wrap: wrap;
-        }
-
-        .admin-info {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-
-        .admin-badge {
-            background: #dc2626;
-            color: white;
-            padding: 4px 12px;
-            border-radius: 6px;
-            font-size: 0.75rem;
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            animation: pulse 2s ease infinite;
-        }
-
-        @keyframes pulse {
-            0%, 100% { box-shadow: 0 0 0 0 rgba(220, 38, 38, 0.4); }
-            50% { box-shadow: 0 0 0 8px rgba(220, 38, 38, 0); }
-        }
-
-        .admin-name {
-            font-size: 0.9rem;
-            color: #fff;
-            font-weight: 600;
-        }
-
-        .admin-actions {
-            display: flex;
-            gap: 8px;
-            flex-wrap: wrap;
-        }
-
-        .admin-action-btn {
-            background: rgba(255, 255, 255, 0.05);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            color: #e0e0e0;
-            padding: 8px 16px;
-            border-radius: 10px;
-            cursor: pointer;
-            font-size: 0.8rem;
-            font-weight: 500;
-            font-family: inherit;
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-            display: inline-flex;
-            align-items: center;
-            gap: 6px;
-        }
-
-        .admin-action-btn:hover {
-            background: rgba(124, 58, 237, 0.2);
-            border-color: #7c3aed;
-            color: #fff;
-            transform: translateY(-2px);
-            box-shadow: 0 4px 12px rgba(124, 58, 237, 0.2);
-        }
-
-        .admin-action-btn.logout:hover {
-            background: rgba(220, 38, 38, 0.2);
-            border-color: #dc2626;
-            box-shadow: 0 4px 12px rgba(220, 38, 38, 0.2);
-        }
-
-        /* Section Title */
+        .sync-status { display: none; max-width: 1200px; margin: 0 auto 20px; padding: 0 20px; animation: slideDown 0.4s cubic-bezier(0.34, 1.56, 0.64, 1) forwards; }
+        .sync-status.active { display: block; }
+        .sync-status-inner { background: linear-gradient(135deg, rgba(34, 197, 94, 0.1), rgba(34, 197, 94, 0.05)); border: 1px solid rgba(34, 197, 94, 0.3); border-radius: 14px; padding: 12px 20px; display: flex; align-items: center; gap: 10px; font-size: 0.85rem; color: #22c55e; }
+        .sync-status-inner.syncing { background: linear-gradient(135deg, rgba(124, 58, 237, 0.1), rgba(124, 58, 237, 0.05)); border-color: rgba(124, 58, 237, 0.3); color: #a78bfa; }
+        .sync-status-inner.error { background: linear-gradient(135deg, rgba(220, 38, 38, 0.1), rgba(220, 38, 38, 0.05)); border-color: rgba(220, 38, 38, 0.3); color: #ef4444; }
+        .sync-spinner { width: 16px; height: 16px; border: 2px solid currentColor; border-top-color: transparent; border-radius: 50%; animation: spin 1s linear infinite; }
+        @keyframes spin { to { transform: rotate(360deg); } }
+        .admin-bar { display: none; max-width: 1200px; margin: 0 auto 20px; padding: 0 20px; animation: slideDown 0.4s cubic-bezier(0.34, 1.56, 0.64, 1) forwards; }
+        .admin-bar.active { display: block; }
+        @keyframes slideDown { from { opacity: 0; transform: translateY(-20px); } to { opacity: 1; transform: translateY(0); } }
+        .admin-bar-inner { background: linear-gradient(135deg, rgba(124, 58, 237, 0.15), rgba(220, 38, 38, 0.1)); border: 1px solid rgba(124, 58, 237, 0.3); border-radius: 14px; padding: 14px 20px; display: flex; align-items: center; justify-content: space-between; gap: 12px; flex-wrap: wrap; }
+        .admin-info { display: flex; align-items: center; gap: 10px; }
+        .admin-badge { background: #dc2626; color: white; padding: 4px 12px; border-radius: 6px; font-size: 0.75rem; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; animation: pulse 2s ease infinite; }
+        @keyframes pulse { 0%, 100% { box-shadow: 0 0 0 0 rgba(220, 38, 38, 0.4); } 50% { box-shadow: 0 0 0 8px rgba(220, 38, 38, 0); } }
+        .admin-name { font-size: 0.9rem; color: #fff; font-weight: 600; }
+        .admin-actions { display: flex; gap: 8px; flex-wrap: wrap; }
+        .admin-action-btn { background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(255, 255, 255, 0.1); color: #e0e0e0; padding: 8px 16px; border-radius: 10px; cursor: pointer; font-size: 0.8rem; font-weight: 500; font-family: inherit; transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); display: inline-flex; align-items: center; gap: 6px; }
+        .admin-action-btn:hover { background: rgba(124, 58, 237, 0.2); border-color: #7c3aed; color: #fff; transform: translateY(-2px); box-shadow: 0 4px 12px rgba(124, 58, 237, 0.2); }
+        .admin-action-btn.logout:hover { background: rgba(220, 38, 38, 0.2); border-color: #dc2626; box-shadow: 0 4px 12px rgba(220, 38, 38, 0.2); }
         .section-title { font-size: 1.1rem; font-weight: 600; color: #fff; margin-bottom: 20px; padding-bottom: 10px; border-bottom: 1px solid #2a2a2a; }
-
-        /* Posts */
         .posts-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 20px; }
         .post-card { background: #141414; border: 1px solid #2a2a2a; border-radius: 12px; overflow: hidden; transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1); position: relative; animation: fadeInUp 0.5s ease forwards; opacity: 0; }
         @keyframes fadeInUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
@@ -151,9 +66,12 @@
         .post-header { display: flex; justify-content: space-between; align-items: flex-start; gap: 10px; margin-bottom: 8px; }
         .post-title { font-size: 1rem; font-weight: 600; color: #fff; transition: color 0.3s ease; }
         .post-card:hover .post-title { color: #a78bfa; }
-        .delete-btn { background: none; border: none; color: #666; cursor: pointer; font-size: 1.1rem; padding: 4px 8px; border-radius: 6px; transition: all 0.3s ease; opacity: 0; transform: scale(0.8); }
-        .post-card:hover .delete-btn { opacity: 1; transform: scale(1); }
-        .delete-btn:hover { color: #ef4444; background: rgba(239, 68, 68, 0.1); transform: scale(1.1); }
+        .post-actions { display: flex; gap: 4px; opacity: 0; transform: scale(0.8); transition: all 0.3s ease; }
+        .post-card:hover .post-actions { opacity: 1; transform: scale(1); }
+        .action-btn { background: none; border: none; color: #666; cursor: pointer; font-size: 1rem; padding: 4px 6px; border-radius: 6px; transition: all 0.3s ease; }
+        .action-btn:hover { transform: scale(1.1); }
+        .action-btn.edit:hover { color: #3b82f6; background: rgba(59, 130, 246, 0.1); }
+        .action-btn.delete:hover { color: #ef4444; background: rgba(239, 68, 68, 0.1); }
         .post-desc { font-size: 0.85rem; color: #888; line-height: 1.5; margin-bottom: 14px; transition: color 0.3s ease; }
         .post-card:hover .post-desc { color: #aaa; }
         .post-links { display: flex; flex-wrap: wrap; gap: 8px; }
@@ -161,11 +79,31 @@
         .link-btn::before { content: ''; position: absolute; top: 0; left: -100%; width: 100%; height: 100%; background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent); transition: left 0.5s ease; }
         .link-btn:hover::before { left: 100%; }
         .link-btn:hover { background: #7c3aed; border-color: #7c3aed; color: white; transform: translateY(-2px); box-shadow: 0 4px 12px rgba(124, 58, 237, 0.3); }
-
-        /* Empty State */
         .empty-state { text-align: center; padding: 60px 20px; color: #555; animation: fadeInUp 0.6s ease forwards; }
-
-        /* Modals */
+        .logs-section { display: none; max-width: 1200px; margin: 0 auto 30px; padding: 0 20px; animation: fadeInUp 0.5s ease forwards; }
+        .logs-section.active { display: block; }
+        .logs-container { background: #141414; border: 1px solid #2a2a2a; border-radius: 14px; overflow: hidden; }
+        .logs-header { padding: 16px 20px; border-bottom: 1px solid #2a2a2a; display: flex; align-items: center; justify-content: space-between; }
+        .logs-header h3 { font-size: 1rem; font-weight: 600; color: #fff; display: flex; align-items: center; gap: 8px; }
+        .logs-count { background: rgba(34, 197, 94, 0.15); color: #22c55e; padding: 2px 10px; border-radius: 20px; font-size: 0.75rem; font-weight: 600; }
+        .logs-list { max-height: 400px; overflow-y: auto; padding: 0; }
+        .log-item { padding: 12px 20px; border-bottom: 1px solid #1f1f1f; display: flex; align-items: center; gap: 12px; transition: all 0.2s ease; animation: fadeInLeft 0.3s ease forwards; opacity: 0; }
+        @keyframes fadeInLeft { from { opacity: 0; transform: translateX(-10px); } to { opacity: 1; transform: translateX(0); } }
+        .log-item:hover { background: rgba(255, 255, 255, 0.02); }
+        .log-item:last-child { border-bottom: none; }
+        .log-icon { width: 32px; height: 32px; border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 0.9rem; flex-shrink: 0; }
+        .log-icon.add { background: rgba(34, 197, 94, 0.15); }
+        .log-icon.remove { background: rgba(220, 38, 38, 0.15); }
+        .log-icon.edit { background: rgba(59, 130, 246, 0.15); }
+        .log-icon.login { background: rgba(124, 58, 237, 0.15); }
+        .log-icon.logout { background: rgba(107, 114, 128, 0.15); }
+        .log-content { flex: 1; }
+        .log-text { font-size: 0.85rem; color: #ccc; }
+        .log-text strong { color: #fff; }
+        .log-time { font-size: 0.75rem; color: #666; margin-top: 2px; }
+        .logs-empty { text-align: center; padding: 40px 20px; color: #555; font-size: 0.9rem; }
+        .clear-logs-btn { background: transparent; border: 1px solid #333; color: #888; padding: 6px 14px; border-radius: 8px; cursor: pointer; font-size: 0.75rem; font-family: inherit; transition: all 0.3s ease; }
+        .clear-logs-btn:hover { border-color: #ef4444; color: #ef4444; background: rgba(239, 68, 68, 0.05); }
         .modal-overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.7); backdrop-filter: blur(8px); z-index: 1000; justify-content: center; align-items: center; padding: 20px; opacity: 0; transition: opacity 0.3s ease; }
         .modal-overlay.active { display: flex; opacity: 1; }
         .modal { background: #1e1e24; border: 1px solid #333; border-radius: 20px; width: 100%; max-width: 420px; max-height: 90vh; overflow-y: auto; transform: scale(0.9) translateY(20px); opacity: 0; transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1); box-shadow: 0 25px 50px rgba(0, 0, 0, 0.5); }
@@ -203,35 +141,25 @@
         .btn-primary:hover { background: #6d28d9; transform: translateY(-2px); box-shadow: 0 8px 20px rgba(124, 58, 237, 0.3); }
         .btn-danger { background: #dc2626; color: white; }
         .btn-danger:hover { background: #b91c1c; transform: translateY(-2px); box-shadow: 0 8px 20px rgba(220, 38, 38, 0.3); }
-
-        /* Confirm Delete */
+        .btn-blue { background: #3b82f6; color: white; }
+        .btn-blue:hover { background: #2563eb; transform: translateY(-2px); box-shadow: 0 8px 20px rgba(59, 130, 246, 0.3); }
         .confirm-modal .modal { max-width: 360px; }
         .confirm-modal .modal-body { text-align: center; padding: 20px 28px; }
         .confirm-modal .modal-body p { color: #aaa; font-size: 0.9rem; margin-bottom: 8px; }
         .confirm-modal .modal-body strong { color: #fff; font-size: 1.1rem; }
         .confirm-modal .modal-footer { justify-content: center; }
-
-        /* Password Modal */
         .password-modal .modal { max-width: 380px; }
         .password-modal .modal-body { padding: 0 28px 24px; }
         .password-input { text-align: left; letter-spacing: normal; font-size: 1rem !important; }
-
-        /* Settings Modal */
         .settings-modal .modal { max-width: 400px; }
         .current-creds { background: #2a2a30; border-radius: 12px; padding: 14px 16px; margin-bottom: 20px; }
         .current-creds p { margin: 0; font-size: 0.85rem; color: #aaa; }
         .current-creds strong { color: #fff; }
-
-        /* Watermark */
         .watermark { position: fixed; bottom: 16px; right: 20px; font-size: 0.75rem; color: rgba(255, 255, 255, 0.25); z-index: 50; pointer-events: none; font-weight: 500; letter-spacing: 0.5px; }
-
-        /* Scrollbar */
         ::-webkit-scrollbar { width: 8px; }
         ::-webkit-scrollbar-track { background: #0d0d0d; }
         ::-webkit-scrollbar-thumb { background: #333; border-radius: 4px; }
         ::-webkit-scrollbar-thumb:hover { background: #444; }
-
-        /* Responsive */
         @media (max-width: 640px) {
             .header-content { flex-wrap: wrap; gap: 12px; }
             .nav-links { width: 100%; justify-content: flex-end; }
@@ -239,7 +167,7 @@
             .banner { height: 200px; }
             .link-row { flex-direction: column; gap: 6px; }
             .link-row .link-name, .link-row .link-url { flex: 1; width: 100%; }
-            .delete-btn { opacity: 1; transform: scale(1); }
+            .post-actions { opacity: 1; transform: scale(1); }
             .modal { max-width: 100%; }
             .admin-bar-inner { flex-direction: column; align-items: flex-start; }
             .admin-actions { width: 100%; justify-content: flex-start; }
@@ -270,21 +198,35 @@
         </div>
     </header>
 
-    <!-- Admin Bar - aparece quando logado -->
+    <div class="sync-status" id="syncStatus">
+        <div class="sync-status-inner" id="syncStatusInner">
+            <div class="sync-spinner" id="syncSpinner"></div>
+            <span id="syncText">Sincronizando...</span>
+        </div>
+    </div>
+
     <div class="admin-bar" id="adminBar">
         <div class="admin-bar-inner">
             <div class="admin-info">
                 <span class="admin-badge">Admin</span>
-                <span class="admin-name">cold_r7uu</span>
+                <span class="admin-name" id="adminDisplayName">cold_r7uu</span>
             </div>
             <div class="admin-actions">
                 <button class="admin-action-btn" onclick="openModal()">
                     <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
                     Adicionar Jogo
                 </button>
+                <button class="admin-action-btn" onclick="syncNow()">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="23 4 23 10 17 10"></polyline><path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10"></path></svg>
+                    Sincronizar Agora
+                </button>
+                <button class="admin-action-btn" onclick="toggleLogs()">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>
+                    Logs
+                </button>
                 <button class="admin-action-btn" onclick="openSettingsModal()">
                     <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"></circle><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path></svg>
-                    Alterar Credenciais
+                    Credenciais
                 </button>
                 <button class="admin-action-btn logout" onclick="logoutAdmin()">
                     <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path><polyline points="16 17 21 12 16 7"></polyline><line x1="21" y1="12" x2="9" y2="12"></line></svg>
@@ -294,21 +236,35 @@
         </div>
     </div>
 
+    <div class="logs-section" id="logsSection">
+        <div class="logs-container">
+            <div class="logs-header">
+                <h3>
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align: middle; margin-right: 6px;"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>
+                    Logs do Sistema
+                </h3>
+                <div style="display: flex; align-items: center; gap: 10px;">
+                    <span class="logs-count" id="logsCount">0 registros</span>
+                    <button class="clear-logs-btn" onclick="clearLogs()">Limpar</button>
+                </div>
+            </div>
+            <div class="logs-list" id="logsList">
+                <div class="logs-empty">Nenhum log registrado ainda.</div>
+            </div>
+        </div>
+    </div>
+
     <main>
         <div class="banner">
             <img src="https://i.imgur.com/WDDREuJ.png" alt="Banner do Servidor">
         </div>
-
         <h2 class="section-title">Todos os Jogos</h2>
-
         <div id="postsContainer" class="posts-grid"></div>
-
         <div id="emptyState" class="empty-state" style="display: none;">
             <p>Nenhum jogo postado ainda.</p>
         </div>
     </main>
 
-    <!-- Modal Login -->
     <div id="passwordModal" class="modal-overlay password-modal" onclick="closePasswordOutside(event)">
         <div class="modal" onclick="event.stopPropagation()">
             <div class="modal-header">
@@ -332,7 +288,6 @@
         </div>
     </div>
 
-    <!-- Modal Alterar Credenciais -->
     <div id="settingsModal" class="modal-overlay settings-modal" onclick="closeSettingsOutside(event)">
         <div class="modal" onclick="event.stopPropagation()">
             <div class="modal-header">
@@ -341,7 +296,7 @@
             </div>
             <div class="modal-body">
                 <div class="current-creds">
-                    <p>Usuário atual: <strong id="currentUserDisplay">nwczar7uu</strong></p>
+                    <p>Usuário atual: <strong id="currentUserDisplay">ncwzar7u</strong></p>
                 </div>
                 <div class="form-group">
                     <label>Novo Usuário</label>
@@ -363,14 +318,14 @@
         </div>
     </div>
 
-    <!-- Modal Adicionar Jogo -->
     <div id="modal" class="modal-overlay" onclick="closeModalOutside(event)">
         <div class="modal" onclick="event.stopPropagation()">
             <div class="modal-header">
-                <h2>Adicionar Jogo</h2>
+                <h2 id="modalTitle">Adicionar Jogo</h2>
                 <button class="modal-close" onclick="closeModal()">&times;</button>
             </div>
             <div class="modal-body">
+                <input type="hidden" id="editPostId">
                 <div class="form-group">
                     <label>Título</label>
                     <input type="text" id="postTitle" placeholder="Nome do jogo">
@@ -401,12 +356,11 @@
             </div>
             <div class="modal-footer">
                 <button class="btn btn-secondary" onclick="closeModal()">Cancelar</button>
-                <button class="btn btn-primary" onclick="savePost()">Salvar</button>
+                <button class="btn btn-primary" onclick="savePost()" id="saveBtn">Salvar</button>
             </div>
         </div>
     </div>
 
-    <!-- Modal Confirmar Exclusão -->
     <div id="confirmModal" class="modal-overlay confirm-modal" onclick="closeConfirmOutside(event)">
         <div class="modal" onclick="event.stopPropagation()">
             <div class="modal-header">
@@ -428,21 +382,157 @@
     <div class="watermark">Made by Luckzin23</div>
 
     <script>
-        let adminUser = localStorage.getItem('nwc_admin_user') || 'nwczar7uu';
-        let adminPassword = localStorage.getItem('nwc_admin_pass') || 'luckzar7uu';
-        let isAdmin = false;
-        let posts = JSON.parse(localStorage.getItem('nwc_posts')) || [];
-        let deleteTargetId = null;
+        const JSONBIN_URL = 'https://api.jsonbin.io/v3/b/6a00992badc21f119a7d576c';
+        const JSONBIN_API_KEY = '$2a$10$9jSphIQXo1Woa973XwAON.K6FI1bvYY1/s/4gp0.WsbPoaCadTHyq';
+        const AUTHORIZED_EMAIL = 'zocolirafael56@gmail.com';
+        const DEFAULT_USER = 'ncwzar7u';
+        const DEFAULT_PASS = 'luckzar7u';
+        const SYNC_INTERVAL = 30000;
 
-        function savePosts() {
-            localStorage.setItem('nwc_posts', JSON.stringify(posts));
-            renderPosts();
+        let adminUser = localStorage.getItem('nwc_admin_user') || DEFAULT_USER;
+        let adminPassword = localStorage.getItem('nwc_admin_pass') || DEFAULT_PASS;
+
+        if (!localStorage.getItem('nwc_admin_user')) localStorage.setItem('nwc_admin_user', DEFAULT_USER);
+        if (!localStorage.getItem('nwc_admin_pass')) localStorage.setItem('nwc_admin_pass', DEFAULT_PASS);
+
+        let isAdmin = localStorage.getItem('nwc_admin_session') === 'true';
+        let isAuthorizedEmail = localStorage.getItem('nwc_authorized_email') === AUTHORIZED_EMAIL;
+        let posts = [];
+        let logs = JSON.parse(localStorage.getItem('nwc_logs')) || [];
+        let deleteTargetId = null;
+        let editingPostId = null;
+        let logsVisible = false;
+        let syncEnabled = false;
+
+        function isJsonBinConfigured() {
+            return JSONBIN_URL.indexOf('SEU_BIN_ID') === -1 && JSONBIN_API_KEY.indexOf('SUA_API_KEY') === -1;
+        }
+
+        function showSyncStatus(text, type) {
+            const status = document.getElementById('syncStatus');
+            const inner = document.getElementById('syncStatusInner');
+            const spinner = document.getElementById('syncSpinner');
+            const textEl = document.getElementById('syncText');
+            
+            status.classList.add('active');
+            inner.className = 'sync-status-inner ' + (type || 'syncing');
+            textEl.textContent = text;
+            spinner.style.display = (type === 'syncing' || !type) ? 'block' : 'none';
+            
+            if (type && type !== 'syncing') {
+                setTimeout(function() { status.classList.remove('active'); }, 3000);
+            }
+        }
+
+        async function syncFromCloud() {
+            if (!isJsonBinConfigured()) {
+                posts = JSON.parse(localStorage.getItem('nwc_posts')) || [];
+                renderPosts();
+                return;
+            }
+            
+            try {
+                showSyncStatus('Sincronizando...', 'syncing');
+                const response = await fetch(JSONBIN_URL + '/latest', {
+                    headers: { 'X-Master-Key': JSONBIN_API_KEY }
+                });
+                
+                if (!response.ok) throw new Error('Erro na sincronizacao');
+                
+                const data = await response.json();
+                if (data.record) {
+                    posts = data.record.posts || [];
+                    renderPosts();
+                    showSyncStatus('Sincronizado com sucesso!', 'success');
+                    syncEnabled = true;
+                }
+            } catch (error) {
+                console.error('Erro ao sincronizar:', error);
+                showSyncStatus('Erro na sincronizacao. Usando dados locais.', 'error');
+                posts = JSON.parse(localStorage.getItem('nwc_posts')) || [];
+                renderPosts();
+            }
+        }
+
+        async function syncToCloud() {
+            if (!isJsonBinConfigured()) {
+                localStorage.setItem('nwc_posts', JSON.stringify(posts));
+                return;
+            }
+            
+            try {
+                showSyncStatus('Salvando na nuvem...', 'syncing');
+                const response = await fetch(JSONBIN_URL, {
+                    method: 'PUT',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'X-Master-Key': JSONBIN_API_KEY
+                    },
+                    body: JSON.stringify({ posts: posts })
+                });
+                
+                if (!response.ok) throw new Error('Erro ao salvar');
+                
+                showSyncStatus('Salvo na nuvem!', 'success');
+                syncEnabled = true;
+            } catch (error) {
+                console.error('Erro ao salvar:', error);
+                showSyncStatus('Erro ao salvar. Dados mantidos localmente.', 'error');
+                localStorage.setItem('nwc_posts', JSON.stringify(posts));
+            }
+        }
+
+        function syncNow() {
+            syncFromCloud();
+            if (isAdmin || isAuthorizedEmail) {
+                addLog('edit', 'Sincronizacao manual realizada');
+            }
+        }
+
+        function addLog(type, message) {
+            const log = { id: Date.now(), type: type, message: message, time: new Date().toLocaleString('pt-BR') };
+            logs.unshift(log);
+            if (logs.length > 100) logs = logs.slice(0, 100);
+            localStorage.setItem('nwc_logs', JSON.stringify(logs));
+            if (logsVisible) renderLogs();
+        }
+
+        function renderLogs() {
+            const list = document.getElementById('logsList');
+            const count = document.getElementById('logsCount');
+            count.textContent = logs.length + ' registro' + (logs.length !== 1 ? 's' : '');
+            if (logs.length === 0) { list.innerHTML = '<div class="logs-empty">Nenhum log registrado ainda.</div>'; return; }
+            list.innerHTML = logs.map(function(log, index) {
+                let icon = '', iconClass = '';
+                switch(log.type) {
+                    case 'add': icon = '+'; iconClass = 'add'; break;
+                    case 'remove': icon = 'D'; iconClass = 'remove'; break;
+                    case 'edit': icon = 'E'; iconClass = 'edit'; break;
+                    case 'login': icon = 'L'; iconClass = 'login'; break;
+                    case 'logout': icon = 'O'; iconClass = 'logout'; break;
+                    default: icon = 'E'; iconClass = 'edit';
+                }
+                return '<div class="log-item" style="animation-delay: ' + (index * 0.05) + 's"><div class="log-icon ' + iconClass + '">' + icon + '</div><div class="log-content"><div class="log-text">' + log.message + '</div><div class="log-time">' + log.time + '</div></div></div>';
+            }).join('');
+        }
+
+        function toggleLogs() {
+            logsVisible = !logsVisible;
+            const section = document.getElementById('logsSection');
+            if (logsVisible) { section.classList.add('active'); renderLogs(); } else { section.classList.remove('active'); }
+        }
+
+        function clearLogs() {
+            if (confirm('Tem certeza que deseja limpar todos os logs?')) {
+                logs = []; localStorage.setItem('nwc_logs', JSON.stringify(logs)); renderLogs(); addLog('edit', 'Logs limpos pelo administrador');
+            }
         }
 
         function updateAdminBar() {
             const bar = document.getElementById('adminBar');
-            if (isAdmin) {
+            if (isAdmin || isAuthorizedEmail) {
                 bar.classList.add('active');
+                document.getElementById('adminDisplayName').textContent = isAuthorizedEmail ? 'Rafael (Email)' : 'cold_r7uu';
             } else {
                 bar.classList.remove('active');
             }
@@ -453,54 +543,146 @@
             const emptyState = document.getElementById('emptyState');
             if (posts.length === 0) { container.innerHTML = ''; emptyState.style.display = 'block'; return; }
             emptyState.style.display = 'none'; container.innerHTML = '';
-            const sorted = [...posts].sort((a, b) => { if (a.pinned && !b.pinned) return -1; if (!a.pinned && b.pinned) return 1; return b.id - a.id; });
-            sorted.forEach((post, index) => {
-                const card = document.createElement('div'); card.className = 'post-card'; card.style.animationDelay = `${index * 0.08}s`;
-                const imageHtml = post.image ? `<img src="${post.image}" class="post-image" alt="${post.title}" onerror="this.parentElement.querySelector('.post-image-placeholder').style.display='flex'; this.style.display='none'">` : '';
-                const placeholderHtml = `<div class="post-image-placeholder" style="${post.image ? 'display:none' : ''}">🎮</div>`;
-                const linksHtml = post.links.map(link => `<a href="${link.url}" target="_blank" class="link-btn"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg>${link.name}</a>`).join('');
-                const deleteButton = isAdmin ? `<button class="delete-btn" onclick="openConfirmModal(${post.id})" title="Excluir jogo"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="3 6 5 6 21 6"></polyline><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path></svg></button>` : '';
-                card.innerHTML = `${imageHtml}${placeholderHtml}<div class="post-body"><div class="post-header"><h3 class="post-title">${post.pinned ? '📌 ' : ''}${post.title}</h3>${deleteButton}</div><p class="post-desc">${post.description}</p><div class="post-links">${linksHtml}</div></div>`;
+            const sorted = posts.slice().sort(function(a, b) { if (a.pinned && !b.pinned) return -1; if (!a.pinned && b.pinned) return 1; return b.id - a.id; });
+            sorted.forEach(function(post, index) {
+                const card = document.createElement('div'); card.className = 'post-card'; card.style.animationDelay = (index * 0.08) + 's';
+                const imageHtml = post.image ? '<img src="' + post.image + '" class="post-image" alt="' + post.title + '" onerror="this.parentElement.querySelector(\'.post-image-placeholder\').style.display=\'flex\'; this.style.display=\'none\'">' : '';
+                const placeholderHtml = '<div class="post-image-placeholder" style="' + (post.image ? 'display:none' : '') + '">Game</div>';
+                const linksHtml = (post.links || []).map(function(link) { return '<a href="' + link.url + '" target="_blank" class="link-btn"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg>' + link.name + '</a>'; }).join('');
+                const hasAdminAccess = isAdmin || isAuthorizedEmail;
+                const actions = hasAdminAccess ? 
+                    '<div class="post-actions">' +
+                        '<button class="action-btn edit" onclick="openEditModal(' + post.id + ')" title="Editar jogo">' +
+                            '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path></svg>' +
+                        '</button>' +
+                        '<button class="action-btn delete" onclick="openConfirmModal(' + post.id + ')" title="Excluir jogo">' +
+                            '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="3 6 5 6 21 6"></polyline><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path></svg>' +
+                        '</button>' +
+                    '</div>' : '';
+                card.innerHTML = imageHtml + placeholderHtml + '<div class="post-body"><div class="post-header"><h3 class="post-title">' + (post.pinned ? 'Fixado ' : '') + post.title + '</h3>' + actions + '</div><p class="post-desc">' + post.description + '</p><div class="post-links">' + linksHtml + '</div></div>';
                 container.appendChild(card);
             });
         }
 
-        // Password
-        function openPasswordModal() { document.getElementById('passwordModal').classList.add('active'); document.body.style.overflow = 'hidden'; setTimeout(() => document.getElementById('adminUser').focus(), 300); }
-        function closePasswordModal() { document.getElementById('passwordModal').classList.remove('active'); document.body.style.overflow = ''; document.getElementById('adminUser').value = ''; document.getElementById('adminPassword').value = ''; }
+        function openPasswordModal() { 
+            document.getElementById('passwordModal').classList.add('active'); 
+            document.body.style.overflow = 'hidden'; 
+            setTimeout(function() { document.getElementById('adminUser').focus(); }, 300); 
+        }
+        function closePasswordModal() { 
+            document.getElementById('passwordModal').classList.remove('active'); 
+            document.body.style.overflow = ''; 
+            document.getElementById('adminUser').value = ''; 
+            document.getElementById('adminPassword').value = ''; 
+        }
         function closePasswordOutside(e) { if (e.target === document.getElementById('passwordModal')) closePasswordModal(); }
         function checkPassword() {
             const user = document.getElementById('adminUser').value.trim();
             const pass = document.getElementById('adminPassword').value;
             if (user === adminUser && pass === adminPassword) {
-                isAdmin = true; closePasswordModal(); updateAdminBar(); renderPosts();
-            } else { alert('Usuário ou senha incorretos!'); document.getElementById('adminPassword').value = ''; document.getElementById('adminPassword').focus(); }
+                isAdmin = true;
+                localStorage.setItem('nwc_admin_session', 'true');
+                closePasswordModal(); updateAdminBar(); renderPosts();
+                addLog('login', 'Administrador logado: ' + user);
+            } else { 
+                alert('Usuario ou senha incorretos!'); 
+                document.getElementById('adminPassword').value = ''; 
+                document.getElementById('adminPassword').focus(); 
+            }
         }
 
-        function logoutAdmin() { isAdmin = false; updateAdminBar(); renderPosts(); }
+        function logoutAdmin() {
+            const wasAdmin = isAdmin || isAuthorizedEmail;
+            isAdmin = false; isAuthorizedEmail = false;
+            localStorage.removeItem('nwc_admin_session');
+            localStorage.removeItem('nwc_authorized_email');
+            logsVisible = false;
+            document.getElementById('logsSection').classList.remove('active');
+            updateAdminBar(); renderPosts();
+            if (wasAdmin) addLog('logout', 'Administrador deslogado');
+        }
 
-        // Settings
-        function openSettingsModal() { document.getElementById('settingsModal').classList.add('active'); document.body.style.overflow = 'hidden'; document.getElementById('currentUserDisplay').textContent = adminUser; }
-        function closeSettingsModal() { document.getElementById('settingsModal').classList.remove('active'); document.body.style.overflow = ''; document.getElementById('newUser').value = ''; document.getElementById('newPassword').value = ''; document.getElementById('confirmNewPassword').value = ''; }
+        function openSettingsModal() { 
+            document.getElementById('settingsModal').classList.add('active'); 
+            document.body.style.overflow = 'hidden'; 
+            document.getElementById('currentUserDisplay').textContent = adminUser; 
+        }
+        function closeSettingsModal() { 
+            document.getElementById('settingsModal').classList.remove('active'); 
+            document.body.style.overflow = ''; 
+            document.getElementById('newUser').value = ''; 
+            document.getElementById('newPassword').value = ''; 
+            document.getElementById('confirmNewPassword').value = ''; 
+        }
         function closeSettingsOutside(e) { if (e.target === document.getElementById('settingsModal')) closeSettingsModal(); }
         function saveCredentials() {
             const newUser = document.getElementById('newUser').value.trim();
             const newPass = document.getElementById('newPassword').value;
             const confirmPass = document.getElementById('confirmNewPassword').value;
-            if (newPass && newPass !== confirmPass) { alert('As senhas não coincidem!'); return; }
-            if (newUser) { adminUser = newUser; localStorage.setItem('nwc_admin_user', adminUser); }
-            if (newPass) { adminPassword = newPass; localStorage.setItem('nwc_admin_pass', adminPassword); }
-            alert('Credenciais atualizadas com sucesso!'); closeSettingsModal();
+            if (newPass && newPass !== confirmPass) { alert('As senhas nao coincidem!'); return; }
+            let changed = false;
+            if (newUser) { adminUser = newUser; localStorage.setItem('nwc_admin_user', adminUser); changed = true; addLog('edit', 'Usuario alterado para: ' + newUser); }
+            if (newPass) { adminPassword = newPass; localStorage.setItem('nwc_admin_pass', adminPassword); changed = true; addLog('edit', 'Senha do administrador alterada'); }
+            if (changed) alert('Credenciais atualizadas com sucesso!'); else alert('Nenhuma alteracao feita.');
+            closeSettingsModal();
         }
 
-        // Add Modal
-        function openModal() { document.getElementById('modal').classList.add('active'); document.body.style.overflow = 'hidden'; }
-        function closeModal() { document.getElementById('modal').classList.remove('active'); document.body.style.overflow = ''; resetForm(); }
+        function openModal() {
+            editingPostId = null;
+            document.getElementById('modalTitle').textContent = 'Adicionar Jogo';
+            document.getElementById('saveBtn').textContent = 'Salvar';
+            document.getElementById('editPostId').value = '';
+            resetForm();
+            document.getElementById('modal').classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function openEditModal(postId) {
+            const post = posts.find(function(p) { return p.id === postId; });
+            if (!post) return;
+            editingPostId = postId;
+            document.getElementById('modalTitle').textContent = 'Editar Jogo';
+            document.getElementById('saveBtn').textContent = 'Atualizar';
+            document.getElementById('editPostId').value = postId;
+            document.getElementById('postTitle').value = post.title;
+            document.getElementById('postDesc').value = post.description === 'Sem descricao.' ? '' : post.description;
+            document.getElementById('postImage').value = post.image || '';
+            document.getElementById('pinPost').checked = post.pinned || false;
+
+            const container = document.getElementById('linkInputs');
+            container.innerHTML = '';
+            if (!post.links || post.links.length === 0) {
+                container.innerHTML = '<div class="link-row"><input type="text" class="link-name" placeholder="Nome"><input type="text" class="link-url" placeholder="https://..."></div>';
+            } else {
+                post.links.forEach(function(link, i) {
+                    const row = document.createElement('div'); row.className = 'link-row';
+                    const removeBtn = i > 0 ? '<button class="remove-link" onclick="this.parentElement.remove()">&times;</button>' : '';
+                    row.innerHTML = '<input type="text" class="link-name" placeholder="Nome" value="' + link.name + '"><input type="text" class="link-url" placeholder="https://..." value="' + link.url + '">' + removeBtn;
+                    container.appendChild(row);
+                });
+            }
+
+            document.getElementById('modal').classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeModal() { 
+            document.getElementById('modal').classList.remove('active'); 
+            document.body.style.overflow = ''; 
+            resetForm(); 
+            editingPostId = null; 
+        }
         function closeModalOutside(e) { if (e.target === document.getElementById('modal')) closeModal(); }
-        function resetForm() { document.getElementById('postTitle').value = ''; document.getElementById('postDesc').value = ''; document.getElementById('postImage').value = ''; document.getElementById('pinPost').checked = false; document.getElementById('linkInputs').innerHTML = '<div class="link-row"><input type="text" class="link-name" placeholder="Nome"><input type="text" class="link-url" placeholder="https://..."></div>'; }
+        function resetForm() { 
+            document.getElementById('postTitle').value = ''; 
+            document.getElementById('postDesc').value = ''; 
+            document.getElementById('postImage').value = ''; 
+            document.getElementById('pinPost').checked = false; 
+            document.getElementById('linkInputs').innerHTML = '<div class="link-row"><input type="text" class="link-name" placeholder="Nome"><input type="text" class="link-url" placeholder="https://..."></div>'; 
+        }
         function addLinkRow() {
             const container = document.getElementById('linkInputs');
-            if (container.querySelectorAll('.link-row').length >= 4) { alert('Máximo de 4 links atingido.'); return; }
+            if (container.querySelectorAll('.link-row').length >= 4) { alert('Maximo de 4 links atingido.'); return; }
             const row = document.createElement('div'); row.className = 'link-row';
             row.innerHTML = '<input type="text" class="link-name" placeholder="Nome"><input type="text" class="link-url" placeholder="https://..."><button class="remove-link" onclick="this.parentElement.remove()">&times;</button>';
             container.appendChild(row);
@@ -510,25 +692,68 @@
             const desc = document.getElementById('postDesc').value.trim();
             const image = document.getElementById('postImage').value.trim();
             const pinned = document.getElementById('pinPost').checked;
-            if (!title) { alert('Digite um título para o jogo.'); return; }
+            if (!title) { alert('Digite um titulo para o jogo.'); return; }
             const links = [];
-            document.querySelectorAll('.link-row').forEach(row => {
+            document.querySelectorAll('.link-row').forEach(function(row) {
                 const name = row.querySelector('.link-name').value.trim();
                 const url = row.querySelector('.link-url').value.trim();
-                if (name && url) links.push({ name, url });
+                if (name && url) links.push({ name: name, url: url });
             });
-            posts.unshift({ id: Date.now(), title, description: desc || 'Sem descrição.', image, links: links.length > 0 ? links : [], pinned });
-            savePosts(); closeModal();
+
+            if (editingPostId) {
+                const index = posts.findIndex(function(p) { return p.id === editingPostId; });
+                if (index !== -1) {
+                    const oldTitle = posts[index].title;
+                    posts[index] = { id: posts[index].id, title: title, description: desc || 'Sem descricao.', image: image, links: links.length > 0 ? links : [], pinned: pinned };
+                    syncToCloud();
+                    renderPosts();
+                    addLog('edit', 'Jogo editado: "' + oldTitle + '" -> "' + title + '"');
+                }
+            } else {
+                posts.unshift({ id: Date.now(), title: title, description: desc || 'Sem descricao.', image: image, links: links.length > 0 ? links : [], pinned: pinned });
+                syncToCloud();
+                renderPosts();
+                addLog('add', 'Jogo adicionado: "' + title + '"');
+            }
+            closeModal();
         }
 
-        // Confirm Delete
-        function openConfirmModal(postId) { if (!isAdmin) return; deleteTargetId = postId; const post = posts.find(p => p.id === postId); if (post) { document.getElementById('confirmGameName').textContent = `"${post.title}"`; document.getElementById('confirmModal').classList.add('active'); document.body.style.overflow = 'hidden'; } }
+        function openConfirmModal(postId) { 
+            if (!isAdmin && !isAuthorizedEmail) return; 
+            deleteTargetId = postId; 
+            const post = posts.find(function(p) { return p.id === postId; }); 
+            if (post) { 
+                document.getElementById('confirmGameName').textContent = '"' + post.title + '"'; 
+                document.getElementById('confirmModal').classList.add('active'); 
+                document.body.style.overflow = 'hidden'; 
+            } 
+        }
         function closeConfirmModal() { document.getElementById('confirmModal').classList.remove('active'); document.body.style.overflow = ''; deleteTargetId = null; }
         function closeConfirmOutside(e) { if (e.target === document.getElementById('confirmModal')) closeConfirmModal(); }
-        function confirmDelete() { if (deleteTargetId && isAdmin) { posts = posts.filter(p => p.id !== deleteTargetId); savePosts(); closeConfirmModal(); } }
+        function confirmDelete() { 
+            if (deleteTargetId && (isAdmin || isAuthorizedEmail)) { 
+                const post = posts.find(function(p) { return p.id === deleteTargetId; });
+                const postTitle = post ? post.title : 'Desconhecido';
+                posts = posts.filter(function(p) { return p.id !== deleteTargetId; }); 
+                syncToCloud();
+                renderPosts(); 
+                closeConfirmModal(); 
+                addLog('remove', 'Jogo removido: "' + postTitle + '"');
+            } 
+        }
 
-        document.addEventListener('keydown', e => { if (e.key === 'Escape') { closeModal(); closeConfirmModal(); closePasswordModal(); closeSettingsModal(); } });
-        updateAdminBar(); renderPosts();
+        document.addEventListener('keydown', function(e) { 
+            if (e.key === 'Escape') { 
+                closeModal(); closeConfirmModal(); closePasswordModal(); closeSettingsModal(); 
+            } 
+        });
+
+        updateAdminBar(); 
+        syncFromCloud();
+        
+        setInterval(function() {
+            syncFromCloud();
+        }, SYNC_INTERVAL);
     </script>
 </body>
-  </html>
+</html>
