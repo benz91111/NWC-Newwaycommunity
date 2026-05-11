@@ -314,35 +314,68 @@
         }
         @keyframes fadeInUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
 
-        /* ===== NEON SPIN — EFEITO DE CLIQUE ===== */
+                /* ===== NEON CORRENDO SOBRE A BORDA EM LOOP ===== */
         .post-card.neon-active {
             border-color: transparent;
         }
+
+        /* Anel neon principal — corre pela borda */
         .post-card.neon-active::before {
             content: '';
             position: absolute;
-            top: -2px; left: -2px; right: -2px; bottom: -2px;
-            background: conic-gradient(from 0deg, transparent, var(--neon-spin-color), transparent, var(--neon-spin-color), transparent);
+            top: -2px;
+            left: -2px;
+            right: -2px;
+            bottom: -2px;
             border-radius: 14px;
+            padding: 2px;
+            background: linear-gradient(90deg, 
+                transparent 0%, 
+                transparent 40%, 
+                var(--neon-spin-color) 50%, 
+                transparent 60%, 
+                transparent 100%
+            );
+            background-size: 200% 200%;
+            -webkit-mask: 
+                linear-gradient(#fff 0 0) content-box, 
+                linear-gradient(#fff 0 0);
+            -webkit-mask-composite: xor;
+            mask-composite: exclude;
+            animation: neon-run 1.5s linear infinite;
             z-index: -1;
-            animation: neon-spin 2s linear infinite;
-            opacity: 0.8;
+            pointer-events: none;
         }
+
+        /* Glow de fundo */
         .post-card.neon-active::after {
             content: '';
             position: absolute;
-            top: -2px; left: -2px; right: -2px; bottom: -2px;
-            background: conic-gradient(from 0deg, transparent, var(--neon-spin-color), transparent, var(--neon-spin-color), transparent);
-            border-radius: 14px;
-            z-index: -1;
-            animation: neon-spin 2s linear infinite;
-            filter: blur(8px);
-            opacity: 0.4;
+            top: -4px;
+            left: -4px;
+            right: -4px;
+            bottom: -4px;
+            background: var(--neon-spin-color);
+            border-radius: 16px;
+            filter: blur(12px);
+            opacity: 0.35;
+            z-index: -2;
+            animation: neon-pulse 1.5s ease-in-out infinite;
+            pointer-events: none;
         }
-        @keyframes neon-spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
+
+        /* Animação do neon correndo pela borda */
+        @keyframes neon-run {
+            0% { background-position: 200% 0; }
+            100% { background-position: -200% 0; }
         }
+
+        /* Pulsação suave do glow */
+        @keyframes neon-pulse {
+            0%, 100% { opacity: 0.25; filter: blur(12px); }
+            50% { opacity: 0.5; filter: blur(16px); }
+        }
+
 
         /* ===== HOVER EFFECTS ===== */
         .post-card:hover {
