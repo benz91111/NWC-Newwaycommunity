@@ -115,10 +115,12 @@
         .modal-body { padding: 0 28px 24px; }
         .form-group { margin-bottom: 16px; }
         .form-group label { display: block; font-size: 0.75rem; font-weight: 600; color: #888; margin-bottom: 6px; text-transform: uppercase; letter-spacing: 0.8px; }
-        .form-group input, .form-group textarea { width: 100%; background: #2a2a30; border: 1px solid #3a3a42; border-radius: 12px; padding: 14px 16px; color: #e0e0e0; font-family: inherit; font-size: 0.95rem; transition: all 0.3s ease; outline: none; }
-        .form-group input:focus, .form-group textarea:focus { border-color: #7c3aed; box-shadow: 0 0 0 3px rgba(124, 58, 237, 0.15); background: #32323a; }
+        .form-group input, .form-group textarea, .form-group select { width: 100%; background: #2a2a30; border: 1px solid #3a3a42; border-radius: 12px; padding: 14px 16px; color: #e0e0e0; font-family: inherit; font-size: 0.95rem; transition: all 0.3s ease; outline: none; }
+        .form-group input:focus, .form-group textarea:focus, .form-group select:focus { border-color: #7c3aed; box-shadow: 0 0 0 3px rgba(124, 58, 237, 0.15); background: #32323a; }
         .form-group input::placeholder, .form-group textarea::placeholder { color: #666; }
         .form-group textarea { min-height: 90px; resize: vertical; }
+        .form-group select { cursor: pointer; appearance: none; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%23666' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 14px center; padding-right: 40px; }
+        .form-group select option { background: #2a2a30; color: #e0e0e0; }
         .form-hint { font-size: 0.75rem; color: #666; margin-top: 4px; }
         .link-row { display: flex; gap: 10px; margin-bottom: 10px; align-items: center; }
         .link-row input { flex: 1; }
@@ -160,6 +162,52 @@
         ::-webkit-scrollbar-track { background: #0d0d0d; }
         ::-webkit-scrollbar-thumb { background: #333; border-radius: 4px; }
         ::-webkit-scrollbar-thumb:hover { background: #444; }
+
+        /* ===== ESTILOS NOVOS: CATEGORIAS E PESQUISA ===== */
+        .search-categories-bar { max-width: 1200px; margin: 0 auto 25px; padding: 0 20px; display: flex; gap: 15px; flex-wrap: wrap; align-items: center; }
+        .search-box { flex: 1; min-width: 250px; position: relative; }
+        .search-box input { width: 100%; background: #1a1a1a; border: 1px solid #2a2a2a; border-radius: 12px; padding: 12px 16px 12px 42px; color: #e0e0e0; font-family: inherit; font-size: 0.9rem; transition: all 0.3s ease; outline: none; }
+        .search-box input:focus { border-color: #7c3aed; box-shadow: 0 0 0 3px rgba(124, 58, 237, 0.15); background: #1e1e24; }
+        .search-box input::placeholder { color: #555; }
+        .search-box svg { position: absolute; left: 14px; top: 50%; transform: translateY(-50%); color: #555; pointer-events: none; transition: color 0.3s ease; }
+        .search-box input:focus + svg { color: #7c3aed; }
+        .categories-filter { display: flex; gap: 8px; flex-wrap: wrap; align-items: center; }
+        .category-chip { background: #1a1a1a; border: 1px solid #2a2a2a; color: #888; padding: 8px 14px; border-radius: 20px; cursor: pointer; font-size: 0.8rem; font-weight: 500; transition: all 0.3s ease; display: inline-flex; align-items: center; gap: 6px; user-select: none; }
+        .category-chip:hover { border-color: #7c3aed; color: #a78bfa; transform: translateY(-1px); }
+        .category-chip.active { background: #7c3aed; border-color: #7c3aed; color: white; box-shadow: 0 4px 12px rgba(124, 58, 237, 0.3); }
+        .category-chip .cat-count { background: rgba(255,255,255,0.15); padding: 2px 6px; border-radius: 10px; font-size: 0.7rem; min-width: 18px; text-align: center; }
+        .category-chip.active .cat-count { background: rgba(255,255,255,0.25); }
+        .post-category-tag { display: inline-block; background: rgba(124, 58, 237, 0.15); border: 1px solid rgba(124, 58, 237, 0.3); color: #a78bfa; padding: 3px 10px; border-radius: 6px; font-size: 0.7rem; font-weight: 600; margin-bottom: 10px; text-transform: uppercase; letter-spacing: 0.5px; }
+        .categories-section { display: none; max-width: 1200px; margin: 0 auto 30px; padding: 0 20px; animation: fadeInUp 0.5s ease forwards; }
+        .categories-section.active { display: block; }
+        .categories-container { background: #141414; border: 1px solid #2a2a2a; border-radius: 14px; overflow: hidden; }
+        .categories-header { padding: 16px 20px; border-bottom: 1px solid #2a2a2a; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 10px; }
+        .categories-header h3 { font-size: 1rem; font-weight: 600; color: #fff; display: flex; align-items: center; gap: 8px; }
+        .categories-list { max-height: 400px; overflow-y: auto; padding: 0; }
+        .category-item { padding: 14px 20px; border-bottom: 1px solid #1f1f1f; display: flex; align-items: center; justify-content: space-between; gap: 12px; transition: all 0.2s ease; animation: fadeInLeft 0.3s ease forwards; opacity: 0; }
+        .category-item:hover { background: rgba(255, 255, 255, 0.02); }
+        .category-item:last-child { border-bottom: none; }
+        .category-info { display: flex; align-items: center; gap: 12px; flex: 1; }
+        .category-color { width: 16px; height: 16px; border-radius: 4px; flex-shrink: 0; border: 1px solid rgba(255,255,255,0.1); }
+        .category-name { font-size: 0.9rem; color: #ccc; font-weight: 500; }
+        .category-name strong { color: #fff; }
+        .category-stats { font-size: 0.75rem; color: #666; margin-top: 2px; }
+        .category-actions { display: flex; gap: 6px; }
+        .cat-action-btn { background: none; border: none; color: #666; cursor: pointer; padding: 6px 8px; border-radius: 6px; transition: all 0.3s ease; font-size: 0.9rem; }
+        .cat-action-btn:hover { transform: scale(1.1); }
+        .cat-action-btn.edit:hover { color: #3b82f6; background: rgba(59, 130, 246, 0.1); }
+        .cat-action-btn.delete:hover { color: #ef4444; background: rgba(239, 68, 68, 0.1); }
+        .add-category-form { padding: 16px 20px; border-bottom: 1px solid #2a2a2a; display: flex; gap: 10px; flex-wrap: wrap; align-items: center; }
+        .add-category-form input { flex: 1; min-width: 150px; background: #2a2a30; border: 1px solid #3a3a42; border-radius: 10px; padding: 10px 14px; color: #e0e0e0; font-family: inherit; font-size: 0.85rem; outline: none; transition: all 0.3s ease; }
+        .add-category-form input:focus { border-color: #7c3aed; box-shadow: 0 0 0 3px rgba(124, 58, 237, 0.15); }
+        .add-category-form input[type="color"] { width: 44px; height: 40px; padding: 4px; cursor: pointer; border-radius: 8px; min-width: 44px; }
+        .add-category-form .btn { padding: 10px 18px; font-size: 0.8rem; }
+        .categories-empty { text-align: center; padding: 40px 20px; color: #555; font-size: 0.9rem; }
+        .no-results { text-align: center; padding: 60px 20px; color: #555; animation: fadeInUp 0.6s ease forwards; }
+        .no-results svg { width: 48px; height: 48px; color: #333; margin-bottom: 16px; }
+        .no-results h3 { color: #888; font-size: 1.1rem; margin-bottom: 8px; }
+        .no-results p { font-size: 0.85rem; color: #666; }
+
         @media (max-width: 640px) {
             .header-content { flex-wrap: wrap; gap: 12px; }
             .nav-links { width: 100%; justify-content: flex-end; }
@@ -171,6 +219,9 @@
             .modal { max-width: 100%; }
             .admin-bar-inner { flex-direction: column; align-items: flex-start; }
             .admin-actions { width: 100%; justify-content: flex-start; }
+            .search-categories-bar { flex-direction: column; align-items: stretch; }
+            .search-box { min-width: 100%; }
+            .categories-filter { width: 100%; overflow-x: auto; flex-wrap: nowrap; padding-bottom: 4px; }
         }
     </style>
 </head>
@@ -216,6 +267,10 @@
                     <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
                     Adicionar Jogo
                 </button>
+                <button class="admin-action-btn" onclick="openCategoriesManager()">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"></path></svg>
+                    Categorias
+                </button>
                 <button class="admin-action-btn" onclick="syncNow()">
                     <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="23 4 23 10 17 10"></polyline><path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10"></path></svg>
                     Sincronizar Agora
@@ -254,17 +309,59 @@
         </div>
     </div>
 
+    <!-- Seção de Gerenciamento de Categorias -->
+    <div class="categories-section" id="categoriesSection">
+        <div class="categories-container">
+            <div class="categories-header">
+                <h3>
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align: middle; margin-right: 6px;"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"></path></svg>
+                    Gerenciar Categorias
+                </h3>
+                <button class="clear-logs-btn" onclick="closeCategoriesManager()">Fechar</button>
+            </div>
+            <div class="add-category-form">
+                <input type="text" id="newCategoryName" placeholder="Nome da nova categoria..." style="flex: 2;">
+                <input type="color" id="newCategoryColor" value="#7c3aed" title="Cor da categoria">
+                <button class="btn btn-primary" onclick="addCategory()">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align: middle; margin-right: 4px;"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
+                    Adicionar
+                </button>
+            </div>
+            <div class="categories-list" id="categoriesList">
+                <div class="categories-empty">Nenhuma categoria criada ainda.</div>
+            </div>
+        </div>
+    </div>
+
     <main>
         <div class="banner">
             <img src="https://i.imgur.com/WDDREuJ.png" alt="Banner do Servidor">
         </div>
-        <h2 class="section-title">Todos os Jogos</h2>
+
+        <!-- Barra de Pesquisa e Filtros -->
+        <div class="search-categories-bar">
+            <div class="search-box">
+                <input type="text" id="searchInput" placeholder="Pesquisar jogos..." oninput="handleSearch()">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+            </div>
+            <div class="categories-filter" id="categoriesFilter">
+                <div class="category-chip active" onclick="filterByCategory('all')" id="chip-all">
+                    Todos <span class="cat-count" id="count-all">0</span>
+                </div>
+            </div>
+        </div>
+
+        <h2 class="section-title" id="sectionTitle">Todos os Jogos</h2>
         <div id="postsContainer" class="posts-grid"></div>
         <div id="emptyState" class="empty-state" style="display: none;">
             <p>Nenhum jogo postado ainda.</p>
         </div>
+        <div id="noResults" class="no-results" style="display: none;">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+            <h3>Nenhum resultado encontrado</h3>
+            <p>Tente ajustar sua pesquisa ou filtros.</p>
+        </div>
     </main>
-
     <div id="passwordModal" class="modal-overlay password-modal" onclick="closePasswordOutside(event)">
         <div class="modal" onclick="event.stopPropagation()">
             <div class="modal-header">
@@ -331,6 +428,12 @@
                     <input type="text" id="postTitle" placeholder="Nome do jogo">
                 </div>
                 <div class="form-group">
+                    <label>Categoria</label>
+                    <select id="postCategory">
+                        <option value="">Sem categoria</option>
+                    </select>
+                </div>
+                <div class="form-group">
                     <label>Descrição</label>
                     <textarea id="postDesc" placeholder="Descrição do jogo..."></textarea>
                 </div>
@@ -378,9 +481,49 @@
             </div>
         </div>
     </div>
+    <div id="confirmCatModal" class="modal-overlay confirm-modal" onclick="closeConfirmCatOutside(event)">
+        <div class="modal" onclick="event.stopPropagation()">
+            <div class="modal-header">
+                <h2>Confirmar Exclusão</h2>
+                <button class="modal-close" onclick="closeConfirmCatModal()">&times;</button>
+            </div>
+            <div class="modal-body">
+                <p>Tem certeza que deseja excluir a categoria</p>
+                <strong id="confirmCatName">""</strong>
+                <p style="margin-top: 8px; font-size: 0.8rem; color: #666;">Os jogos dessa categoria ficarão sem categoria.</p>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" onclick="closeConfirmCatModal()">Cancelar</button>
+                <button class="btn btn-danger" onclick="confirmDeleteCategory()">Excluir</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="editCatModal" class="modal-overlay" onclick="closeEditCatOutside(event)">
+        <div class="modal" onclick="event.stopPropagation()">
+            <div class="modal-header">
+                <h2>Editar Categoria</h2>
+                <button class="modal-close" onclick="closeEditCatModal()">&times;</button>
+            </div>
+            <div class="modal-body">
+                <input type="hidden" id="editCatId">
+                <div class="form-group">
+                    <label>Nome da Categoria</label>
+                    <input type="text" id="editCatName" placeholder="Nome da categoria">
+                </div>
+                <div class="form-group">
+                    <label>Cor</label>
+                    <input type="color" id="editCatColor" style="width: 100%; height: 44px; padding: 4px; cursor: pointer;">
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" onclick="closeEditCatModal()">Cancelar</button>
+                <button class="btn btn-primary" onclick="saveCategoryEdit()">Salvar</button>
+            </div>
+        </div>
+    </div>
 
     <div class="watermark">Made by Luckzin23</div>
-
     <script>
         const JSONBIN_URL = 'https://api.jsonbin.io/v3/b/6a00992badc21f119a7d576c';
         const JSONBIN_API_KEY = '$2a$10$9jSphIQXo1Woa973XwAON.K6FI1bvYY1/s/4gp0.WsbPoaCadTHyq';
@@ -398,11 +541,15 @@
         let isAdmin = localStorage.getItem('nwc_admin_session') === 'true';
         let isAuthorizedEmail = localStorage.getItem('nwc_authorized_email') === AUTHORIZED_EMAIL;
         let posts = [];
+        let categories = JSON.parse(localStorage.getItem('nwc_categories')) || [];
         let logs = JSON.parse(localStorage.getItem('nwc_logs')) || [];
         let deleteTargetId = null;
+        let deleteCatTargetId = null;
         let editingPostId = null;
         let logsVisible = false;
         let syncEnabled = false;
+        let currentFilter = 'all';
+        let currentSearch = '';
 
         function isJsonBinConfigured() {
             return JSONBIN_URL.indexOf('SEU_BIN_ID') === -1 && JSONBIN_API_KEY.indexOf('SUA_API_KEY') === -1;
@@ -413,12 +560,10 @@
             const inner = document.getElementById('syncStatusInner');
             const spinner = document.getElementById('syncSpinner');
             const textEl = document.getElementById('syncText');
-            
             status.classList.add('active');
             inner.className = 'sync-status-inner ' + (type || 'syncing');
             textEl.textContent = text;
             spinner.style.display = (type === 'syncing' || !type) ? 'block' : 'none';
-            
             if (type && type !== 'syncing') {
                 setTimeout(function() { status.classList.remove('active'); }, 3000);
             }
@@ -427,22 +572,25 @@
         async function syncFromCloud() {
             if (!isJsonBinConfigured()) {
                 posts = JSON.parse(localStorage.getItem('nwc_posts')) || [];
+                categories = JSON.parse(localStorage.getItem('nwc_categories')) || [];
                 renderPosts();
+                renderCategoryFilters();
                 return;
             }
-            
             try {
                 showSyncStatus('Sincronizando...', 'syncing');
                 const response = await fetch(JSONBIN_URL + '/latest', {
                     headers: { 'X-Master-Key': JSONBIN_API_KEY }
                 });
-                
                 if (!response.ok) throw new Error('Erro na sincronizacao');
-                
                 const data = await response.json();
                 if (data.record) {
                     posts = data.record.posts || [];
+                    categories = data.record.categories || [];
+                    localStorage.setItem('nwc_posts', JSON.stringify(posts));
+                    localStorage.setItem('nwc_categories', JSON.stringify(categories));
                     renderPosts();
+                    renderCategoryFilters();
                     showSyncStatus('Sincronizado com sucesso!', 'success');
                     syncEnabled = true;
                 }
@@ -450,16 +598,18 @@
                 console.error('Erro ao sincronizar:', error);
                 showSyncStatus('Erro na sincronizacao. Usando dados locais.', 'error');
                 posts = JSON.parse(localStorage.getItem('nwc_posts')) || [];
+                categories = JSON.parse(localStorage.getItem('nwc_categories')) || [];
                 renderPosts();
+                renderCategoryFilters();
             }
         }
 
         async function syncToCloud() {
             if (!isJsonBinConfigured()) {
                 localStorage.setItem('nwc_posts', JSON.stringify(posts));
+                localStorage.setItem('nwc_categories', JSON.stringify(categories));
                 return;
             }
-            
             try {
                 showSyncStatus('Salvando na nuvem...', 'syncing');
                 const response = await fetch(JSONBIN_URL, {
@@ -468,17 +618,16 @@
                         'Content-Type': 'application/json',
                         'X-Master-Key': JSONBIN_API_KEY
                     },
-                    body: JSON.stringify({ posts: posts })
+                    body: JSON.stringify({ posts: posts, categories: categories })
                 });
-                
                 if (!response.ok) throw new Error('Erro ao salvar');
-                
                 showSyncStatus('Salvo na nuvem!', 'success');
                 syncEnabled = true;
             } catch (error) {
                 console.error('Erro ao salvar:', error);
                 showSyncStatus('Erro ao salvar. Dados mantidos localmente.', 'error');
                 localStorage.setItem('nwc_posts', JSON.stringify(posts));
+                localStorage.setItem('nwc_categories', JSON.stringify(categories));
             }
         }
 
@@ -528,6 +677,190 @@
             }
         }
 
+        function openCategoriesManager() {
+            document.getElementById('categoriesSection').classList.add('active');
+            renderCategoriesList();
+        }
+
+        function closeCategoriesManager() {
+            document.getElementById('categoriesSection').classList.remove('active');
+        }
+
+        function renderCategoriesList() {
+            const list = document.getElementById('categoriesList');
+            if (categories.length === 0) {
+                list.innerHTML = '<div class="categories-empty">Nenhuma categoria criada ainda.</div>';
+                return;
+            }
+            list.innerHTML = categories.map(function(cat, index) {
+                const count = posts.filter(function(p) { return p.categoryId === cat.id; }).length;
+                return '<div class="category-item" style="animation-delay: ' + (index * 0.05) + 's">' +
+                    '<div class="category-info">' +
+                        '<div class="category-color" style="background: ' + cat.color + ';"></div>' +
+                        '<div>' +
+                            '<div class="category-name"><strong>' + cat.name + '</strong></div>' +
+                            '<div class="category-stats">' + count + ' jogo' + (count !== 1 ? 's' : '') + '</div>' +
+                        '</div>' +
+                    '</div>' +
+                    '<div class="category-actions">' +
+                        '<button class="cat-action-btn edit" onclick="openEditCategoryModal(' + cat.id + ')" title="Editar">' +
+                            '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path></svg>' +
+                        '</button>' +
+                        '<button class="cat-action-btn delete" onclick="openConfirmCatModal(' + cat.id + ')" title="Excluir">' +
+                            '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="3 6 5 6 21 6"></polyline><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path></svg>' +
+                        '</button>' +
+                    '</div>' +
+                '</div>';
+            }).join('');
+        }
+
+        function addCategory() {
+            const name = document.getElementById('newCategoryName').value.trim();
+            const color = document.getElementById('newCategoryColor').value;
+            if (!name) { alert('Digite um nome para a categoria.'); return; }
+            const newCat = { id: Date.now(), name: name, color: color };
+            categories.push(newCat);
+            localStorage.setItem('nwc_categories', JSON.stringify(categories));
+            syncToCloud();
+            document.getElementById('newCategoryName').value = '';
+            document.getElementById('newCategoryColor').value = '#7c3aed';
+            renderCategoriesList();
+            renderCategoryFilters();
+            updateCategorySelect();
+            addLog('add', 'Categoria adicionada: "' + name + '"');
+        }
+
+        function openConfirmCatModal(catId) {
+            deleteCatTargetId = catId;
+            const cat = categories.find(function(c) { return c.id === catId; });
+            if (cat) {
+                document.getElementById('confirmCatName').textContent = '"' + cat.name + '"';
+                document.getElementById('confirmCatModal').classList.add('active');
+                document.body.style.overflow = 'hidden';
+            }
+        }
+
+        function closeConfirmCatModal() {
+            document.getElementById('confirmCatModal').classList.remove('active');
+            document.body.style.overflow = '';
+            deleteCatTargetId = null;
+        }
+
+        function closeConfirmCatOutside(e) {
+            if (e.target === document.getElementById('confirmCatModal')) closeConfirmCatModal();
+        }
+
+        function confirmDeleteCategory() {
+            if (deleteCatTargetId) {
+                const cat = categories.find(function(c) { return c.id === deleteCatTargetId; });
+                const catName = cat ? cat.name : 'Desconhecida';
+                posts.forEach(function(post) {
+                    if (post.categoryId === deleteCatTargetId) {
+                        post.categoryId = null;
+                    }
+                });
+                categories = categories.filter(function(c) { return c.id !== deleteCatTargetId; });
+                localStorage.setItem('nwc_categories', JSON.stringify(categories));
+                syncToCloud();
+                renderCategoriesList();
+                renderCategoryFilters();
+                renderPosts();
+                updateCategorySelect();
+                closeConfirmCatModal();
+                addLog('remove', 'Categoria removida: "' + catName + '"');
+            }
+        }
+
+        function openEditCategoryModal(catId) {
+            const cat = categories.find(function(c) { return c.id === catId; });
+            if (!cat) return;
+            document.getElementById('editCatId').value = catId;
+            document.getElementById('editCatName').value = cat.name;
+            document.getElementById('editCatColor').value = cat.color;
+            document.getElementById('editCatModal').classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeEditCatModal() {
+            document.getElementById('editCatModal').classList.remove('active');
+            document.body.style.overflow = '';
+        }
+
+        function closeEditCatOutside(e) {
+            if (e.target === document.getElementById('editCatModal')) closeEditCatModal();
+        }
+
+        function saveCategoryEdit() {
+            const id = parseInt(document.getElementById('editCatId').value);
+            const name = document.getElementById('editCatName').value.trim();
+            const color = document.getElementById('editCatColor').value;
+            if (!name) { alert('Digite um nome para a categoria.'); return; }
+            const index = categories.findIndex(function(c) { return c.id === id; });
+            if (index !== -1) {
+                const oldName = categories[index].name;
+                categories[index] = { id: id, name: name, color: color };
+                localStorage.setItem('nwc_categories', JSON.stringify(categories));
+                syncToCloud();
+                renderCategoriesList();
+                renderCategoryFilters();
+                renderPosts();
+                updateCategorySelect();
+                closeEditCatModal();
+                addLog('edit', 'Categoria editada: "' + oldName + '" -> "' + name + '"');
+            }
+        }
+
+        function renderCategoryFilters() {
+            const container = document.getElementById('categoriesFilter');
+            const allCount = posts.length;
+            let html = '<div class="category-chip ' + (currentFilter === 'all' ? 'active' : '') + '" onclick="filterByCategory(\'all\')" id="chip-all">Todos <span class="cat-count">' + allCount + '</span></div>';
+            categories.forEach(function(cat) {
+                const count = posts.filter(function(p) { return p.categoryId === cat.id; }).length;
+                const isActive = currentFilter === 'cat_' + cat.id;
+                html += '<div class="category-chip ' + (isActive ? 'active' : '') + '" onclick="filterByCategory(' + cat.id + ')" id="chip-' + cat.id + '" style="' + (isActive ? 'background:' + cat.color + ';border-color:' + cat.color + ';' : '') + '">' +
+                    cat.name + ' <span class="cat-count">' + count + '</span>' +
+                '</div>';
+            });
+            container.innerHTML = html;
+        }
+
+        function filterByCategory(catId) {
+            if (catId === 'all') {
+                currentFilter = 'all';
+            } else {
+                currentFilter = 'cat_' + catId;
+            }
+            renderCategoryFilters();
+            renderPosts();
+            const title = document.getElementById('sectionTitle');
+            if (currentFilter === 'all') {
+                title.textContent = 'Todos os Jogos';
+            } else {
+                const cat = categories.find(function(c) { return c.id === catId; });
+                title.textContent = cat ? cat.name : 'Categoria';
+            }
+        }
+
+        function handleSearch() {
+            currentSearch = document.getElementById('searchInput').value.trim().toLowerCase();
+            renderPosts();
+        }
+
+        function getFilteredPosts() {
+            let filtered = posts;
+            if (currentFilter !== 'all') {
+                const catId = parseInt(currentFilter.replace('cat_', ''));
+                filtered = filtered.filter(function(p) { return p.categoryId === catId; });
+            }
+            if (currentSearch) {
+                filtered = filtered.filter(function(p) {
+                    return (p.title && p.title.toLowerCase().indexOf(currentSearch) !== -1) ||
+                           (p.description && p.description.toLowerCase().indexOf(currentSearch) !== -1);
+                });
+            }
+            return filtered;
+        }
+
         function updateAdminBar() {
             const bar = document.getElementById('adminBar');
             if (isAdmin || isAuthorizedEmail) {
@@ -541,14 +874,44 @@
         function renderPosts() {
             const container = document.getElementById('postsContainer');
             const emptyState = document.getElementById('emptyState');
-            if (posts.length === 0) { container.innerHTML = ''; emptyState.style.display = 'block'; return; }
-            emptyState.style.display = 'none'; container.innerHTML = '';
-            const sorted = posts.slice().sort(function(a, b) { if (a.pinned && !b.pinned) return -1; if (!a.pinned && b.pinned) return 1; return b.id - a.id; });
+            const noResults = document.getElementById('noResults');
+            let filtered = getFilteredPosts();
+            if (posts.length === 0) {
+                container.innerHTML = '';
+                emptyState.style.display = 'block';
+                noResults.style.display = 'none';
+                return;
+            }
+            if (filtered.length === 0) {
+                container.innerHTML = '';
+                emptyState.style.display = 'none';
+                noResults.style.display = 'block';
+                return;
+            }
+            emptyState.style.display = 'none';
+            noResults.style.display = 'none';
+            container.innerHTML = '';
+            const sorted = filtered.slice().sort(function(a, b) {
+                if (a.pinned && !b.pinned) return -1;
+                if (!a.pinned && b.pinned) return 1;
+                return b.id - a.id;
+            });
             sorted.forEach(function(post, index) {
-                const card = document.createElement('div'); card.className = 'post-card'; card.style.animationDelay = (index * 0.08) + 's';
+                const card = document.createElement('div');
+                card.className = 'post-card';
+                card.style.animationDelay = (index * 0.08) + 's';
                 const imageHtml = post.image ? '<img src="' + post.image + '" class="post-image" alt="' + post.title + '" onerror="this.parentElement.querySelector(\'.post-image-placeholder\').style.display=\'flex\'; this.style.display=\'none\'">' : '';
                 const placeholderHtml = '<div class="post-image-placeholder" style="' + (post.image ? 'display:none' : '') + '">Game</div>';
-                const linksHtml = (post.links || []).map(function(link) { return '<a href="' + link.url + '" target="_blank" class="link-btn"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg>' + link.name + '</a>'; }).join('');
+                let catTag = '';
+                if (post.categoryId) {
+                    const cat = categories.find(function(c) { return c.id === post.categoryId; });
+                    if (cat) {
+                        catTag = '<div class="post-category-tag" style="background:' + cat.color + '20;border-color:' + cat.color + '40;color:' + cat.color + ';">' + cat.name + '</div>';
+                    }
+                }
+                const linksHtml = (post.links || []).map(function(link) {
+                    return '<a href="' + link.url + '" target="_blank" class="link-btn"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg>' + link.name + '</a>';
+                }).join('');
                 const hasAdminAccess = isAdmin || isAuthorizedEmail;
                 const actions = hasAdminAccess ? 
                     '<div class="post-actions">' +
@@ -559,9 +922,23 @@
                             '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="3 6 5 6 21 6"></polyline><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path></svg>' +
                         '</button>' +
                     '</div>' : '';
-                card.innerHTML = imageHtml + placeholderHtml + '<div class="post-body"><div class="post-header"><h3 class="post-title">' + (post.pinned ? 'Fixado ' : '') + post.title + '</h3>' + actions + '</div><p class="post-desc">' + post.description + '</p><div class="post-links">' + linksHtml + '</div></div>';
+                card.innerHTML = imageHtml + placeholderHtml + 
+                    '<div class="post-body">' + catTag +
+                        '<div class="post-header"><h3 class="post-title">' + (post.pinned ? '<span style="color:#7c3aed;">📌</span> ' : '') + post.title + '</h3>' + actions + '</div>' +
+                        '<p class="post-desc">' + post.description + '</p>' +
+                        '<div class="post-links">' + linksHtml + '</div>' +
+                    '</div>';
                 container.appendChild(card);
             });
+        }
+
+        function updateCategorySelect() {
+            const select = document.getElementById('postCategory');
+            let html = '<option value="">Sem categoria</option>';
+            categories.forEach(function(cat) {
+                html += '<option value="' + cat.id + '">' + cat.name + '</option>';
+            });
+            select.innerHTML = html;
         }
 
         function openPasswordModal() { 
@@ -598,6 +975,7 @@
             localStorage.removeItem('nwc_authorized_email');
             logsVisible = false;
             document.getElementById('logsSection').classList.remove('active');
+            document.getElementById('categoriesSection').classList.remove('active');
             updateAdminBar(); renderPosts();
             if (wasAdmin) addLog('logout', 'Administrador deslogado');
         }
@@ -633,6 +1011,7 @@
             document.getElementById('saveBtn').textContent = 'Salvar';
             document.getElementById('editPostId').value = '';
             resetForm();
+            updateCategorySelect();
             document.getElementById('modal').classList.add('active');
             document.body.style.overflow = 'hidden';
         }
@@ -648,6 +1027,8 @@
             document.getElementById('postDesc').value = post.description === 'Sem descricao.' ? '' : post.description;
             document.getElementById('postImage').value = post.image || '';
             document.getElementById('pinPost').checked = post.pinned || false;
+            updateCategorySelect();
+            document.getElementById('postCategory').value = post.categoryId || '';
 
             const container = document.getElementById('linkInputs');
             container.innerHTML = '';
@@ -678,6 +1059,7 @@
             document.getElementById('postDesc').value = ''; 
             document.getElementById('postImage').value = ''; 
             document.getElementById('pinPost').checked = false; 
+            document.getElementById('postCategory').value = '';
             document.getElementById('linkInputs').innerHTML = '<div class="link-row"><input type="text" class="link-name" placeholder="Nome"><input type="text" class="link-url" placeholder="https://..."></div>'; 
         }
         function addLinkRow() {
@@ -692,6 +1074,7 @@
             const desc = document.getElementById('postDesc').value.trim();
             const image = document.getElementById('postImage').value.trim();
             const pinned = document.getElementById('pinPost').checked;
+            const categoryId = document.getElementById('postCategory').value;
             if (!title) { alert('Digite um titulo para o jogo.'); return; }
             const links = [];
             document.querySelectorAll('.link-row').forEach(function(row) {
@@ -704,15 +1087,33 @@
                 const index = posts.findIndex(function(p) { return p.id === editingPostId; });
                 if (index !== -1) {
                     const oldTitle = posts[index].title;
-                    posts[index] = { id: posts[index].id, title: title, description: desc || 'Sem descricao.', image: image, links: links.length > 0 ? links : [], pinned: pinned };
+                    posts[index] = { 
+                        id: posts[index].id, 
+                        title: title, 
+                        description: desc || 'Sem descricao.', 
+                        image: image, 
+                        links: links.length > 0 ? links : [], 
+                        pinned: pinned,
+                        categoryId: categoryId ? parseInt(categoryId) : null
+                    };
                     syncToCloud();
                     renderPosts();
+                    renderCategoryFilters();
                     addLog('edit', 'Jogo editado: "' + oldTitle + '" -> "' + title + '"');
                 }
             } else {
-                posts.unshift({ id: Date.now(), title: title, description: desc || 'Sem descricao.', image: image, links: links.length > 0 ? links : [], pinned: pinned });
+                posts.unshift({ 
+                    id: Date.now(), 
+                    title: title, 
+                    description: desc || 'Sem descricao.', 
+                    image: image, 
+                    links: links.length > 0 ? links : [], 
+                    pinned: pinned,
+                    categoryId: categoryId ? parseInt(categoryId) : null
+                });
                 syncToCloud();
                 renderPosts();
+                renderCategoryFilters();
                 addLog('add', 'Jogo adicionado: "' + title + '"');
             }
             closeModal();
@@ -737,6 +1138,7 @@
                 posts = posts.filter(function(p) { return p.id !== deleteTargetId; }); 
                 syncToCloud();
                 renderPosts(); 
+                renderCategoryFilters();
                 closeConfirmModal(); 
                 addLog('remove', 'Jogo removido: "' + postTitle + '"');
             } 
@@ -744,12 +1146,13 @@
 
         document.addEventListener('keydown', function(e) { 
             if (e.key === 'Escape') { 
-                closeModal(); closeConfirmModal(); closePasswordModal(); closeSettingsModal(); 
+                closeModal(); closeConfirmModal(); closePasswordModal(); closeSettingsModal(); closeCategoriesManager(); closeConfirmCatModal(); closeEditCatModal();
             } 
         });
 
         updateAdminBar(); 
         syncFromCloud();
+        updateCategorySelect();
         
         setInterval(function() {
             syncFromCloud();
