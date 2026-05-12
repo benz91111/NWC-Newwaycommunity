@@ -555,8 +555,8 @@
         .no-results h3 { color: var(--text-secondary); font-size: 1.1rem; margin-bottom: 8px; }
         .no-results p { font-size: 0.85rem; color: var(--text-muted); }
 
-        /* ===== MODAIS - CORRIGIDO: SEM TRANSIÇÃO DE DISPLAY ===== */
-                .modal-overlay {
+        /* ===== MODAIS - CORRIGIDO ===== */
+        .modal-overlay {
             display: none;
             position: fixed;
             top: 0; left: 0;
@@ -595,10 +595,6 @@
             pointer-events: auto;
             position: relative;
             z-index: 10001;
-        }
-        .modal-overlay.active .modal {
-            transform: scale(1) translateY(0);
-            opacity: 1;
         }
         .modal-header { padding: 24px 28px 16px; position: relative; }
         .modal-header h2 { font-size: 1.4rem; font-weight: 700; color: #fff; }
@@ -739,6 +735,7 @@
             .categories-filter { width: 100%; overflow-x: auto; flex-wrap: nowrap; padding-bottom: 4px; }
         }
 
+        /* ===== TELA DE ENTRADA ===== */
         .intro-screen {
             position: fixed;
             top: 0;
@@ -823,6 +820,7 @@
     </style>
 </head>
 <body>
+    <!-- ===== TELA DE ENTRADA / INTRO ===== -->
     <div id="intro-screen" class="intro-screen">
         <div class="intro-video-container">
             <video id="intro-video" autoplay muted playsinline loop>
@@ -832,6 +830,7 @@
         <div class="intro-skip" onclick="skipIntro()">Pular introdução</div>
     </div>
 
+    <!-- ===== SITE WRAPPER ===== -->
     <div class="site-wrapper" id="siteWrapper">
         <canvas id="particles-canvas"></canvas>
 
@@ -902,7 +901,6 @@
                 </div>
             </div>
         </div>
-
         <div class="logs-section" id="logsSection">
             <div class="logs-container">
                 <div class="logs-header">
@@ -943,6 +941,7 @@
                 </div>
             </div>
         </div>
+
         <main>
             <div class="banner reveal">
                 <img src="https://i.imgur.com/WDDREuJ.png" alt="Banner do Servidor" loading="lazy">
@@ -971,7 +970,10 @@
                 <p>Tente ajustar sua pesquisa ou filtros.</p>
             </div>
         </main>
-        <div id="passwordModal" class="modal-overlay password-modal" onclick="closePasswordOutside(event)">
+        </div> <!-- ===== FECHA SITE WRAPPER ===== -->
+
+    <!-- ===== MODAIS ===== -->
+<div id="passwordModal" class="modal-overlay password-modal" onclick="closePasswordOutside(event)">
             <div class="modal" onclick="event.stopPropagation()">
                 <div class="modal-header">
                     <h2>Acesso Administrativo</h2>
@@ -1068,7 +1070,28 @@
                 </div>
                 <div class="modal-footer">
                     <button class="btn btn-secondary" onclick="closeModal()">Cancelar</button>
-                    <button class="btn btn-primary" onclick="savePost()" id="saveBtn">Sal
+                    <button class="btn btn-primary" onclick="savePost()" id="saveBtn">Salvar</button>
+                </div>
+            </div>
+        </div>
+
+        <div id="confirmModal" class="modal-overlay confirm-modal" onclick="closeConfirmOutside(event)">
+            <div class="modal" onclick="event.stopPropagation()">
+                <div class="modal-header">
+                    <h2>Confirmar Exclusão</h2>
+                    <button class="modal-close" onclick="closeConfirmModal()">&times;</button>
+                </div>
+                <div class="modal-body">
+                    <p>Tem certeza que deseja excluir o jogo</p>
+                    <strong id="confirmGameName">""</strong>
+                    <p style="margin-top: 8px; font-size: 0.8rem; color: #666;">Esta ação não pode ser desfeita.</p>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-secondary" onclick="closeConfirmModal()">Cancelar</button>
+                    <button class="btn btn-danger" onclick="confirmDelete()">Excluir</button>
+                </div>
+            </div>
+        </div>
         <div id="confirmCatModal" class="modal-overlay confirm-modal" onclick="closeConfirmCatOutside(event)">
             <div class="modal" onclick="event.stopPropagation()">
                 <div class="modal-header">
@@ -1112,7 +1135,7 @@
         </div>
 
         <div class="watermark">Made by Luckzin23</div>
-    </div> <!-- ===== FECHA SITE WRAPPER ===== -->
+    
     <script>
         // ===== CONFIGURAÇÕES =====
         const JSONBIN_URL = 'https://api.jsonbin.io/v3/b/6a00992badc21f119a7d576c';
@@ -1139,6 +1162,7 @@
         let currentSearch = '';
         let neonActiveCard = null;
 
+        // Inicializa credenciais padrão no localStorage
         if (!localStorage.getItem('nwc_admin_user')) localStorage.setItem('nwc_admin_user', DEFAULT_USER);
         if (!localStorage.getItem('nwc_admin_pass')) localStorage.setItem('nwc_admin_pass', DEFAULT_PASS);
 
@@ -1744,6 +1768,7 @@
             });
             select.innerHTML = html;
         }
+
         // ===== AUTH =====
         function openPasswordModal() {
             document.getElementById('passwordModal').classList.add('active');
@@ -2001,4 +2026,4 @@
         init();
     </script>
 </body>
-</html>
+                            </html>
